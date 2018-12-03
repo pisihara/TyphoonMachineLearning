@@ -44,7 +44,7 @@
 
 \abstract{
 
-The  enormous devastation caused by typhoon Haiyan (2013)  led us to consider recent Japan Meteorological Agency (JMA) violent typhoons (sustained wind speeds of at least 105 knots) as a special category of research. Using JMA best-track data for the years 2009-2013 as training data, we construct a quasi-operational MATLAB machine learning model which uses best track data for the first 24 hours of an emerging tropical storm as predictors, and has the storm category, as well as a latitude, longitude, and maximum sustained wind speed as responses. The model is tested using 2014-2016 best track data, for which the quasi-operational Prediction error is reported as a confusion matrix for the category of the storm. and in comparison with a baseline climatological regression model for violent typhoon position and maximum wind speed. 
+The  enormous devastation caused by typhoon Haiyan (2013)  led us to consider recent Japan Meteorological Agency (JMA) violent typhoons (sustained wind speeds of at least 105 knots) as a special category of research. Using JMA best-track data for the years 2009-2013 as training data, we construct a quasi-operational MATLAB machine learning model which uses best track data for the first 24 hours of an emerging tropical storm as predictors, and has the storm category, as well as a latitude, longitude, and maximum sustained wind speed as responses. The model is trained using 2009-2014 best track data, and validated by quasi-operational (``hind-casting") of 2015-2017 best tracks.  Prediction error is reported as a confusion matrix for the category of the storm. and in comparison with a baseline climatological regression model for violent typhoon position and maximum wind speed errors. 
 
 
 
@@ -166,16 +166,16 @@ Varying the weights allows one to place different amounts of importance on diffe
 
 
 
-\section{MML model Error Analysis}
+\section{MML models}
 
-\subsection{Confusion Matrix for Storm Category Prediction Error}
+\subsection{Confusion Matrix for Storm Category Prediction}
 
 \subsection{MVP Prediction Error}
 
 \section{Summary and Conclusions}
 
-Genesis point prediction of most violent points has humanitarian value in that such predictions seek to give the earliest advance warning of the most violent track points during a typhoon season. In GP/MVP models, real-time meteorological data, advanced algorithms embodying physical laws and statistical methods, and super computing power employed in operational forecasting are not utilized since only track position and central pressure at time $t$=0 can be used in the MVP forecast.  For 2013 and 2014, a default GP/MVP model has an average predicted MVP position error EGP which is between the JMA operational error (ER) and baseline PER model error (EP).
-  The default model also performed well in 2015 when assessed by a Monte Carlo simulation (2015 JMA EP and EO errors were not published as of the writing of this article.)  As such, the default model GP prediction of an MVP could be included within current operational forecasting as shortly after $t=0$ as a point of information alerting people living near the predicted MVP to the greatest possible typhoon threat. In cases where the storm does not become violent and loses strength, MVP warnings are canceled to the relief of all concerned.  Further model refinement, including determination of effective $p$-norm or other filtering methods to improve the accuracy not only of predicted geographic position of MVPs, but also the time and wind speed at which these MVPs occur, is therefore deemed to be an important open research topic.
+Early prediction of most violent points of violent (JMA Grade 5) typhoons has humanitarian value in that such predictions seek to give the earliest advance warning of the most violent track points during a typhoon season. Basic machine learning (ML) models ehnhance prediction of storm category, maximum wind speed and location.
+  
 
 \newpage
 
