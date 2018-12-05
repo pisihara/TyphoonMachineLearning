@@ -57,7 +57,7 @@ There are a number of basic supervised ML algorithms \cite{Bon} such as
 {\flushleft In} this chapter, we consider the ensemble approach.
 
 \section{Ensemble Classification}
-
+Predicting the JMA grade of an emerging tropical storm based on its initial 18 hour bext track data is an example of a standard supervised learning problem (\cite{Diet}).  Given training data of the form $\{({\bf x}_1,y_1),...,({\bf x}_m,y_m)$  where ${\bf x_.}=(YEAR,MONTH,DAY,LAT1,LON1,PRES1,WS1,LAT2,LON2,PRES2,WS2,LAT3,LON3,PRES3,WS3,LAT4,	LON4,PRES4,WS4)$ specifies the date and first three best track points of an emerging tropical storm (recorded winspeed of 35 knots).
 
 \section{MATLAB's ML Toolbox}
 Using MATLAB's classification app (included in the Statistics and Machine Learning Toolbox) the confusion matrix (Figure \ref{fig1}) indicates that 47 Grade 5 typhoons are correctly predicted, with 13 false positive (8 Grad 4 and 5 Grade 3) and 16 False Negative (7 predicted as Grade 3 and 9 as Grade 4).  
@@ -65,7 +65,7 @@ Using MATLAB's classification app (included in the Statistics and Machine Learni
  \begin{figure}[!htpb]
  \centering
 \includegraphics[width=3in,height=1.75in]{Ensemblefig1.png}
-\caption{Confusion matrix for MATLAB's Fine Tree classification algorithm (60.3\% Accuracy) }
+\caption{Confusion matrix for MATLAB's Subspace Discriminant Ensemble classification algorithm (73.6\% Accuracy) }
 \label{fig1}
 \end{figure}
 
@@ -80,7 +80,7 @@ The Fine Tree algorithm regerssion plot (Figure \ref{fig2}) shows fairly good wi
 \label{fig2}
 \end{figure}
 
-\section{Assignment}
+\section{Assignment}https://www.overleaf.com/project/5c057323a87843644f4893a6
 
 
 \section{Computer Project}
@@ -95,6 +95,8 @@ an ensemble based regression model for the highest wind speed attained on a best
  \begin{thebibliography}{9}
 
  \bibitem{Bon}  {Bonnardot, G.}, 8 Machine Learning Algorithms Explained in Human Language. Available at https://www.datakeen.co/en/8-machine-learning-algorithms-explained-in-human-language/
+ 
+ \bibitem{Diet} {Dietterich, T.} Ensemble Methods in Machine Learning.  Available at http://web.engr.oregonstate.edu/~tgd/publications/mcs-ensembles.pdf
  
 \bibitem{JMA} {Japan Meteorological Agency},  Best track archives. Available at  http://www.jma.go.jp/ jma/jma-eng/ jma-center/ rsmc-hp-pub-eg/trackarchives.html.
 
