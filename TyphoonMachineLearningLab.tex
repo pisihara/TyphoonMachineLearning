@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[brazil,english]{babel}
 \usepackage{graphicx}
-\title{Typhoon Prediction: A Supervised Machine Learning Approach}
+\title{Typhoon Classification: An Ensemble Machine Learning Approach}
 \begin{document}
 \maketitle
 
@@ -13,7 +13,7 @@
 
 \vspace{.3in}
 \begin{minipage}[r]{4.25in}{\small
-  The enormous devastation caused by super typhoon Haiyan (2013) motivates us to consider whether data from past typhoons hold a key to predicting the category and maximum wind speed from an early description of an emerging tropical storm.  Various machine learning (ML) classification algorithms to predict the typhoon grade are assessed using Confusion Matrices and regression algorithms used to predict maximum wind speed via residuals.}
+  The enormous devastation caused by super typhoon Haiyan (2013) motivates us to consider whether data from past typhoons hold a key to predicting the grade (``category'') of an emerging tropical storm from early best track data (lat, lon, windspeed and pressure in the first 18 hours). In particular, we describe the ensemble approach to machine learning (ML) classification and the utilize MATLAB's Machine Learning Toolbox to create an ensemble based model prediction script. We train the mdoel using 2009-2014 best-track data and validate it using 2015 data.}
 \end{minipage}
 
 \newpage
@@ -31,7 +31,7 @@ mitigate damage to both life and property. This motivates us to apply Machine Le
 
 \section{Supervised Machine Learning}
 
-Supervised Machine learning (ML) utilizes a training data set to develop a model which includes one or more input variables called \emph{predictors} to output the value of an output variable called a \emph{response}.  For example, our predictors might be data for  the lat, lon, pressure and windspeed of an emerging tropical storm, and response might be the grade of the typhoon (3,4, or 5) or its  maximum wind (any value  35 km/hr or greater).  When the response is a discrete set, such as is the case for typhoon grade, we use a \emph{categorical} SML algorithm. When the response is continuous, such as maximum wind speed, we use a \emph{regression} algorithm.  In this lab, we do not consider \emph{unsupervised} ML algorithms where the response variables are not known in advance, and hence not specified in the training data set.  
+Supervised Machine learning (ML) utilizes a training data set to develop a model which includes one or more input variables called \emph{predictors} and outputs the value of a variable called a \emph{response}.  For example, our predictors might be data for  the lat, lon, pressure and windspeed of an emerging tropical storm, and response might be the grade of the typhoon (3,4, or 5) or its  maximum wind (any value  35 km/hr or greater).  When the response is a discrete set, such as is the case for typhoon grade, we use a \emph{categorical} SML algorithm. When the response is continuous, such as maximum wind speed, we use a \emph{regression} algorithm.  In this lab, we do not consider \emph{unsupervised} ML algorithms where the response variables are not known in advance, and hence not specified in the training data set.  
 
 Once a model has been developed using the training data set, it can be validated using a \emph{validation} data set. 
 A validated model can then be used for new data
@@ -51,15 +51,20 @@ There are a number of basic supervised ML algorithms \cite{Bon} such as
     \item Decision Tree 
     \item Support Vector Machines (SVM)
     \item K nearest neighbors
+    \item Ensemble
 \end{itemize}
 
-\section{MATLAB Tree Model Output}
+{\flushleft In} this chapter, we consider the ensemble approach.
 
-Using MATLAB's classification app (included in the Statistics and Machine Learning ) the confusion matrix (Figure \ref{fig1}) indicates that 47 Grade 5 typhoons are correctly predicted, with 13 false positive (8 Grad 4 and 5 Grade 3) and 16 False Negative (7 predicted as Grade 3 and 9 as Grade 4).  
+\section{Ensemble Classification}
+
+
+\section{MATLAB's ML Toolbox}
+Using MATLAB's classification app (included in the Statistics and Machine Learning Toolbox) the confusion matrix (Figure \ref{fig1}) indicates that 47 Grade 5 typhoons are correctly predicted, with 13 false positive (8 Grad 4 and 5 Grade 3) and 16 False Negative (7 predicted as Grade 3 and 9 as Grade 4).  
 
  \begin{figure}[!htpb]
  \centering
-\includegraphics[width=3in,height=1.75in]{TyphoonCM1.png}
+\includegraphics[width=3in,height=1.75in]{Ensemblefig1.png}
 \caption{Confusion matrix for MATLAB's Fine Tree classification algorithm (60.3\% Accuracy) }
 \label{fig1}
 \end{figure}
@@ -77,9 +82,11 @@ The Fine Tree algorithm regerssion plot (Figure \ref{fig2}) shows fairly good wi
 
 \section{Assignment}
 
+
+\section{Computer Project}
 \begin{enumerate}
-\item Which MATLAB algorithm gives the best classification?  The lowest RMSE wind-speed prediction error?
-\item Write a script which performs a typhoon grade classification prediction and outputs a confusion matrix. What is the basis for your classification algorithm?
+\item Using the same training and validation data sets, use MATLAB to create 
+an ensemble based regression model for the highest wind speed attained on a best track.
 \end{enumerate}
 
 \emph{Project Team:} Michaela Flitsch, Mark Nussbaum, Zach Oslund, Matthew Rueger.
