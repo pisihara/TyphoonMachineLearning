@@ -13,7 +13,7 @@
 
 \vspace{.3in}
 \begin{minipage}[r]{4.25in}{\small
-  The enormous devastation caused by super typhoon Haiyan (2013) motivates us to consider whether data from past typhoons hold a key to predicting the grade (``category'') of an emerging tropical storm from early best track data (lat, lon, windspeed and pressure in the first 18 hours). In particular, we describe a machine learning (ML) approach to classification of typhoon grade and regression of maximum wind speed. We train and validate our model and make 'hindcasts' using Japan Meteorological Agency (JMA) best-track data.}
+  The enormous devastation caused by super typhoon Haiyan (2013) motivates us to consider whether data from past typhoons hold a key to predicting the grade (``category'') of an emerging tropical storm from early best track data (lat, lon, windspeed and pressure in the first 18 hours). In particular, we describe a machine learning (ML) approach to classification of typhoon grade as well as ML regression models of maximum wind speed. We train and validate our model and make 'hindcasts' using Japan Meteorological Agency (JMA) best-track data.}
 \end{minipage}
 
 \newpage
@@ -117,7 +117,7 @@ The K Nearest Neighbor algorithm (KNN) assigns a category based on the k closest
 
 \begin{figure}[!htpb]
 	\centering
-	\includegraphics[width=2.5in,height=3in]{SimpleKNN.png}
+	\includegraphics[width=2.25in,height=3in]{SimpleKNN.png}
 	\caption{Simple illustration of KNN classification. In this case K=4.}
 	\label{SimpleSVM}
 \end{figure}
@@ -125,7 +125,7 @@ The K Nearest Neighbor algorithm (KNN) assigns a category based on the k closest
 \subsection{Ensemble}
 The ensemble method \cite{Diet} takes a set of individual algorithms and combines them in some way, for example by a majority classification or a weighted average of regression values.  An important research area in supervised ML is development of methods to construct good ensembles.
 
-
+\newpage
 
 \section{Exercises}  
 
@@ -141,11 +141,11 @@ The ensemble method \cite{Diet} takes a set of individual algorithms and combine
 \item An \emph{accurate} classifier is one that has an
 error rate of better than random guessing on new {\bf x} values. Two classifiers are \emph{diverse} if they make different errors on new data points. Prove that a necessary and sufficient condition for an ensemble of classifiers to be more
 accurate than any of its individual members is if the classifiers are accurate and
-diverse. (See \cite{Hansen}) 
- 
+diverse. (See \cite{Hansen}.
+ 
 
 \end{enumerate}
-
+\newpage
 \section{Computer Project}
 {\flushleft Project website: 
 https://www.overleaf.com/project/5c057323a87843644f4893a6}
