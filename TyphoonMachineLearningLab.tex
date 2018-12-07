@@ -67,18 +67,64 @@ For a regression model, a scatter plot which compares the actual to the predicte
 
 Once a model has been developed using the training data set, it should be validated using a \emph{validation} data set. In our case, we use JMA data for 2015  as our validation set.  If the model does not perform well on the validation data, we must revise our model, returning to the training stage.  If the model does perform well on the validation set, we are ready to test it on new data. For a quasi-operational (``hind-casting") model, our "new" data is JMA data for 2016.
 
-\emph{Algorithms}
+\section{Algorithms}
 
-Predicting the JMA grade of an emerging tropical storm based on its initial 18 hour bext track data is an example of a standard supervised learning problem (\cite{Diet}). A training data set has the form $\{({\bf x}_1,y_1),...,({\bf x}_m,y_m)$  where ${\bf x_*}=(YEAR,MONTH,DAY,LAT1,LON1,PRES1,WS1,LAT2,LON2,PRES2,WS2,LAT3,LON3,PRES3,WS3,LAT4,LON4,PRES4,WS4)$ specifies the date and first three best track points of an emerging tropical storm (recorded windspeed of 35 knots) and $y_*\in\{3,4,5\}$ is the highest typhoon grade achieved by the storm. A learning algorithm outputs a function $f({\bf x})$ called a classifier, which given values for the predictor variable ${\bf x}$, outputs a value for the response variable $y=f({\bf x})$ (typhoon grade).  An ensemble method combines responses of two or more classifiers to improve the prediction accuracy of individual classifiers. 
+Predicting the JMA grade of an emerging tropical storm based on its initial 18 hour bext track data is an example of a standard supervised learning problem (\cite{Diet}). A training data set has the form $\{({\bf x}_1,y_1),...,({\bf x}_m,y_m)$  where 
+\begin{itemize}
+\item ${\bf x_*}$=(YEAR,MONTH,DAY,LAT1,LON1,
+PRES1,WS1,LAT2,LON2,PRES2,WS2,\\LAT3,LON3,PRES3,WS3,LAT4,LON4,PRES4,WS4) specifies the date and first four best track points of an emerging tropical storm (recorded windspeed of 35 knots); and 
+\item $y_*\in\{3,4,5\}$ is the highest typhoon grade achieved by the storm. 
+\end{itemize}
+
+
+A learning algorithm outputs a function $f({\bf x})$ called a classifier, which given values for the predictor variable ${\bf x}$, outputs a value for the response variable $y=f({\bf x})$ (typhoon grade).  An ensemble method combines responses of two or more classifiers to improve the prediction accuracy of individual classifiers. 
 
 There are a number of basic supervised ML algorithms \cite{Bon} such as
 
 \begin{itemize}
-    \item Decision Tree 
+    \item Decision Trees and Random Forests)
     \item Support Vector Machines (SVM)
-    \item K nearest neighbors
+    \item K Nearest Neighbors (KNN)
     \item Ensemble
 \end{itemize}
+
+\subsection{Decision Trees and Random Forests}
+
+One type of ML classification algorithm is based on a decision tree such as shown in Figure \ref{SimpleDecTree}  
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=3in,height=1.75in]{SimpleDecTree.png}
+	\caption{Simple example of a decision tree used to classify typhoon grade.}
+	\label{SimpleDecTree}
+\end{figure}
+
+A Random forest algorithm uses $N$ decision trees and selects the majority category. By increasing the number of leaves in the Decisions trees, a classification algorithm becomes a type of regression model.
+
+\subsection{Support Vector Machines (SVM)}
+The idea of support vector machines (SVM), a type of ML algorithm mainly applied to classification problems,  is to use hyperplanes to separate predictors into categories as shown in Figure \ref{SimpleSVM}. An optimal hyperplane maximizes the distance between the separated categories. In some cases, a transformation of the data is needed before SVM can be applied. 
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=3in,height=1.75in]{SimpleSVM.png}
+	\caption{Simple illustration of SVM classification.}
+	\label{SimpleSVM}
+\end{figure}
+
+\subsection{K Nearest Neighbors (KNN)}
+The K Nearest Neighbor algorithm (KNN) assigns a category based on the k closest predictors. In the case of classification, the category with the highest frequency among the K neighbors is selected. In the case of regression, an average of the k closest predictors may be used. Different choices of K may be investigated to give the best separation between categories.
+
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=2.5in,height=3in]{SimpleKNN.png}
+	\caption{Simple illustration of KNN classification. In this case K=4.}
+	\label{SimpleSVM}
+\end{figure}
+
+\subsection{Ensemble}
+The ensemble method \cite{Diet} takes a set of individual algorithms and combines them in some way, for example by a majority classification or a weighted average of regression values.  An important research area in supervised ML is development of methods to construct good ensembles.
+
 
 
 \section{Exercises}  
@@ -91,6 +137,12 @@ There are a number of basic supervised ML algorithms \cite{Bon} such as
 	\caption{Confusion matrix for a MATLAB subspace discriminant ensemble classification algorithm.}
 	\label{EnsembleClass}
 \end{figure}
+
+\item An \emph{accurate} classifier is one that has an
+error rate of better than random guessing on new {\bf x} values. Two classifiers are \emph{diverse} if they make different errors on new data points. Prove that a necessary and sufficient condition for an ensemble of classifiers to be more
+accurate than any of its individual members is if the classifiers are accurate and
+diverse. (See \cite{Hansen}) 
+ 
 
 \end{enumerate}
 
@@ -109,13 +161,9 @@ MATLAB has a Statistics and Machine Learning Toolbox which has apps to build bot
 	 \item Test the model on a new data set and record the error. 
 	\end{itemize} 
 
-
-
-
-
-\vspace{.25in}
 \begin{enumerate}
-\item Using the same training and validation data sets discussed earlier in this chapter, use MATLAB to develop an categorical ML model for the various level of Grade 5 typhoons, and a regression model for the lat, lon and time where the maximum wind speed is first attained on the best track.
+ \item Using the CategoryTrainingData.xlsx and CategoryData15.xlsx for training and validation data sets respectively, use MATLAB to develop a ensemble categorical ML model for typhoon grade. Include the confusion matrices in your report. 
+ \item Using the RegressionTrainingData.xlsx and RegressionData15.xlsx and a KNN regression model or training and validation data sets respectively, use MATLAB to develop  a ML regression model for the time where the maximum wind speed is first attained on the best track. Include a residual error analysis in your report.
 \end{enumerate}
 
 \emph{Project Team:} Michaela Flitsch, Mark Nussbaum, Zach Oslund, Matthew Rueger.
@@ -125,7 +173,9 @@ MATLAB has a Statistics and Machine Learning Toolbox which has apps to build bot
 
  \bibitem{Bon}  {Bonnardot, G.}, 8 Machine Learning Algorithms Explained in Human Language. Available at https://www.datakeen.co/en/8-machine-learning-algorithms-explained-in-human-language/
  
- \bibitem{Diet} {Dietterich, T.} Ensemble Methods in Machine Learning.  Available at http://web.engr.oregonstate.edu/~tgd/publications/mcs-ensembles.pdf
+ \bibitem{Diet} {Dietterich, T.} Ensemble Methods in Machine Learning.  Available at http://web.engr.oregonstate.edu/$\sim$tgd/publications/mcs-ensembles.pdf
+ 
+ \bibitem{Hansen} {Hansen, L. and Salamon, P.} Neural network ensembles. 1990. IEEE Trans. \emph{Pattern Analysis and Machine Intell}, 12, 993-1001.
  
 \bibitem{JMA} {Japan Meteorological Agency},  Best track archives. Available at  http://www.jma.go.jp/ jma/jma-eng/ jma-center/ rsmc-hp-pub-eg/trackarchives.html.
 
