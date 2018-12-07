@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[brazil,english]{babel}
 \usepackage{graphicx}
-\title{Typhoon Classification: An Ensemble Machine Learning Approach}
+\title{Typhoon Prediction: A Supervised Machine Learning Approach}
 \begin{document}
 \maketitle
 
@@ -13,7 +13,7 @@
 
 \vspace{.3in}
 \begin{minipage}[r]{4.25in}{\small
-  The enormous devastation caused by super typhoon Haiyan (2013) motivates us to consider whether data from past typhoons hold a key to predicting the grade (``category'') of an emerging tropical storm from early best track data (lat, lon, windspeed and pressure in the first 18 hours). In particular, we describe the ensemble approach to machine learning (ML) classification and the utilize MATLAB's Machine Learning Toolbox to create an ensemble based model prediction script. We train the mdoel using 2009-2014 best-track data and validate it using 2015 data.}
+  The enormous devastation caused by super typhoon Haiyan (2013) motivates us to consider whether data from past typhoons hold a key to predicting the grade (``category'') of an emerging tropical storm from early best track data (lat, lon, windspeed and pressure in the first 18 hours). In particular, we describe a machine learning (ML) approach to classification of typhoon grade and regression of maximum wind speed. We train and validate our model and make 'hindcasts' using Japan Meteorological Agency (JMA) best-track data.}
 \end{minipage}
 
 \newpage
@@ -27,23 +27,49 @@ in humanitarian aid. Devastation caused by
 ``super typhoons" like Haiyan makes the on-going
 development of early warning systems an absolute
 necessity to provide vulnerable communities sufficient preparation time to
-mitigate damage to both life and property. This motivates us to apply Machine Learning algorithms to predict th Machine Learning category, wind speed and location of emerging typhoons.
+mitigate damage to both life and property. This motivates us to apply Machine Learning algorithms to predict the typhoon grade (category model), and maximum wind speed (regression model).
 
-\section{Supervised Machine Learning}
+\section{Overview of Supervised Machine Learning}
 
-Supervised Machine learning (ML) utilizes a training data set to develop a model which includes one or more input variables called \emph{predictors} and outputs the value of a variable called a \emph{response}.  For example, our predictors might be data for  the lat, lon, pressure and windspeed of an emerging tropical storm, and response might be the grade of the typhoon (3,4, or 5) or its  maximum wind (any value  35 km/hr or greater).  When the response is a discrete set, such as is the case for typhoon grade, we use a \emph{categorical} SML algorithm. When the response is continuous, such as maximum wind speed, we use a \emph{regression} algorithm.  In this lab, we do not consider \emph{unsupervised} ML algorithms where the response variables are not known in advance, and hence not specified in the training data set.  
-
-Once a model has been developed using the training data set, it can be validated using a \emph{validation} data set. 
-A validated model can then be used for new data
-
-In our case, we will use Japan Meteorological Agency (JMA) data for 2009-2014 as training data:
+Supervised Machine learning (ML) refers to a set of algorithms which utilize a training data set to develop a model which takes one or more input variables called \emph{predictors} and outputs the value of a variable called a \emph{response}. We will use Japan Meteorological Agency (JMA) data for 2009-2014 as training data:
 
 \begin{itemize}
-\item Predictor Variables: Lat, Lon, WS and Pressure at times $t=0,6,12,18$ hours.
-\item Response Variables: Grade, maximum wind speed.
+	\item Predictor Variables: Lat, Lon, WS and Pressure at times $t=0,6,12,18$ hours.
+	\item Response Variables: Typhoon grade (3,4, or 5) and maximum sustained wind speed.
 \end{itemize}
-{\flushleft We use} JMA data for 2015-2016 as our validation set.  For a quasi-operational (``hind-casting") model, our "new" data is JMA data for 2017.
 
+ {\flushleft In the} next section we describe a number of different ML algorithms such as decision tree, k-nearest neighbor, ensemble. In this chapter, we do not consider \emph{unsupervised} ML algorithms where the response variables are not known in advance, and hence not specified in the training data set.
+
+
+
+ When the response is a discrete set, such as is the case for typhoon grade, we use a \emph{categorical} ML algorithm. When the response is continuous, such as maximum wind speed, we use a \emph{regression} algorithm.  In both cases, the accuracy of the prediction is our primary performance measure.  
+ 
+ In the case of categorical models, one way to report accuracy is via a \emph{confusion matrix}. Figure \ref{FineTreeCategorical} gives an example of the latter, for a model which on the training data set accurately classifies 13 grade, 13 grade 4, and 47 grade 5 typhoons. In addition, specific information about the classification errors is given.  For example, 8 typhoons predicted as grade 5 were actually grade 4, and 9 typhoons predicted as grade 4 were actually grade 5. 
+ 
+  \begin{figure}[!htpb]
+  	\centering
+  	\includegraphics[width=3in,height=1.75in]{TyphoonCM1.png}
+  	\caption{Confusion matrix for a typhoon grade Fine Tree categorical ML model.}
+  	\label{FineTreeCategorical}
+  \end{figure}
+  
+  
+For a regression model, a scatter plot which compares the actual to the predicted values, with the difference between them called residuals is a standard visual representation of the error. The root mean squared error (RMSE) is calculated as the square root of the mean squared residuals. Figure \ref{FineTreeRegression} shows such a scatterplot, with in particular shows fairly good wind speed prediction of Grade 5 violent typhoon (maximum wind speeds of at least 105 knots/hr) as well as grade 3 tropical storms, but has greater difficulty in achieving accurate wind speed prediction for the typhoons in the mid-range (category 4).
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=3in,height=1.75in]{TyphoonCM2.png}
+	\caption{Fine Tree ML regression model RMSE: 11.0 }
+	\label{FineTreeRegression}
+\end{figure}
+
+
+
+Once a model has been developed using the training data set, it should be validated using a \emph{validation} data set. In our case, we use JMA data for 2015  as our validation set.  If the model does not perform well on the validation data, we must revise our model, returning to the training stage.  If the model does perform well on the validation set, we are ready to test it on new data. For a quasi-operational (``hind-casting") model, our "new" data is JMA data for 2016.
+
+\emph{Algorithms}
+
+Predicting the JMA grade of an emerging tropical storm based on its initial 18 hour bext track data is an example of a standard supervised learning problem (\cite{Diet}). A training data set has the form $\{({\bf x}_1,y_1),...,({\bf x}_m,y_m)$  where ${\bf x_*}=(YEAR,MONTH,DAY,LAT1,LON1,PRES1,WS1,LAT2,LON2,PRES2,WS2,LAT3,LON3,PRES3,WS3,LAT4,LON4,PRES4,WS4)$ specifies the date and first three best track points of an emerging tropical storm (recorded windspeed of 35 knots) and $y_*\in\{3,4,5\}$ is the highest typhoon grade achieved by the storm. A learning algorithm outputs a function $f({\bf x})$ called a classifier, which given values for the predictor variable ${\bf x}$, outputs a value for the response variable $y=f({\bf x})$ (typhoon grade).  An ensemble method combines responses of two or more classifiers to improve the prediction accuracy of individual classifiers. 
 
 There are a number of basic supervised ML algorithms \cite{Bon} such as
 
@@ -54,39 +80,42 @@ There are a number of basic supervised ML algorithms \cite{Bon} such as
     \item Ensemble
 \end{itemize}
 
-{\flushleft In} this chapter, we consider the ensemble approach.
 
-\section{Ensemble Classification}
-Predicting the JMA grade of an emerging tropical storm based on its initial 18 hour bext track data is an example of a standard supervised learning problem (\cite{Diet}). A training data set has the form $\{({\bf x}_1,y_1),...,({\bf x}_m,y_m)$  where ${\bf x_*}=(YEAR,MONTH,DAY,LAT1,LON1,}$ $PRES1,WS1,LAT2,LON2,PRES2,WS2,LAT3,LON3,PRES3,WS3,LAT4,LON4,PRES4,WS4)$ specifies the date and first three best track points of an emerging tropical storm (recorded windspeed of 35 knots) and $y_*\in\{3,4,5\}$ is the highest typhoon grade achieved by the storm. A learning algorithm outputs a function $f({\bf x})$ called a classifier, which given values for the predictor variable ${\bf x}$, outputs a value for the response variable $y=f({\bf x})$ (typhoon grade).  An ensemble method combines responses of two or more classifiers to improve the prediction accuracy of individual classifiers. 
+\section{Exercises}  
 
-\section{MATLAB's ML Toolbox}
-Using MATLAB's classification app (included in the Statistics and Machine Learning Toolbox) the confusion matrix (Figure \ref{fig1}) indicates that 47 Grade 5 typhoons are correctly predicted, with 13 false positive (8 Grad 4 and 5 Grade 3) and 16 False Negative (7 predicted as Grade 3 and 9 as Grade 4).  
-
- \begin{figure}[!htpb]
- \centering
-\includegraphics[width=3in,height=1.75in]{Ensemblefig1.png}
-\caption{Confusion matrix for MATLAB's Subspace Discriminant Ensemble classification algorithm (73.6\% Accuracy) }
-\label{fig1}
+\begin{enumerate}
+	\item What is the overall percentage of correct typhoon grade prediction based on the information in an ensemble model ML confusion matrix shown in Figure \ref{EnsembleClass}? How well does the model predict grade 5 typhoons (give percentages of correct, false positives and false negatives).)
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=3in,height=1.75in]{Ensemblefig1.png}
+	\caption{Confusion matrix for a MATLAB subspace discriminant ensemble classification algorithm.}
+	\label{EnsembleClass}
 \end{figure}
 
-\vspace{.25in}
-
-The Fine Tree algorithm regerssion plot (Figure \ref{fig2}) shows fairly good wind speed prediction of Grade 5 violent typhoon (maximum wind speeds of at least 105 knots/hr).
-
- \begin{figure}[!htpb]
- \centering
-\includegraphics[width=3in,height=1.75in]{TyphoonCM2.png}
-\caption{MATLAB's Fine Tree regression model RMSE: 11.0 }
-\label{fig2}
-\end{figure}
-
-\section{Assignment}https://www.overleaf.com/project/5c057323a87843644f4893a6
-
+\end{enumerate}
 
 \section{Computer Project}
+{\flushleft Project website: 
+https://www.overleaf.com/project/5c057323a87843644f4893a6}
+
+
+MATLAB has a Statistics and Machine Learning Toolbox which has apps to build both categorical and regression model.  The main steps in creating these ML models are:
+
+\begin{itemize}
+	\item Train MATLAB's suite of ML models using a specified dataset.
+	\item Choose one of the models with high accuracy, and export a MATLAB function based on your selected trained model.
+	\item Apply the exported model to a validation dataset.
+	 If satisfied, continue to the next step. If not, repeat the previous steps.
+	 \item Test the model on a new data set and record the error. 
+	\end{itemize} 
+
+
+
+
+
+\vspace{.25in}
 \begin{enumerate}
-\item Using the same training and validation data sets, use MATLAB to create 
-an ensemble based regression model for the highest wind speed attained on a best track.
+\item Using the same training and validation data sets discussed earlier in this chapter, use MATLAB to develop an categorical ML model for the various level of Grade 5 typhoons, and a regression model for the lat, lon and time where the maximum wind speed is first attained on the best track.
 \end{enumerate}
 
 \emph{Project Team:} Michaela Flitsch, Mark Nussbaum, Zach Oslund, Matthew Rueger.
