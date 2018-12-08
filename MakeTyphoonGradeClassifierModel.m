@@ -8,6 +8,5 @@ LAT3=X(:,12);LON3=X(:,13);PRES3=X(:,14);WS3=X(:,15);
 LAT4=X(:,16);LON4=X(:,17);PRES4=X(:,18);WS4=X(:,19);
 CATEGORY=X(:,20);
 T=table(YEAR,MONTH,DAY,LAT1,LON1,PRES1,WS1,LAT2,LON2,PRES2,WS2,LAT3,LON3,PRES3,WS3,LAT4,LON4,PRES4,WS4,CATEGORY)
- 
 %% Run Exported Function to Create Trained Model
-[trainedClassifier, validationAccuracy]=TyphoonGradeClassifier(T);
+[TrainedTyphoonGradeClassifier, TrainedTyphoonGradeAccuracy]=TyphoonGradeClassifier(T);

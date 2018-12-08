@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.2)  8 DEC 2018 08:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.2)  8 DEC 2018 12:49
 entering extended mode
 **./TyphoonMachineLearningLabDec8.tex
 (TyphoonMachineLearningLabDec8.tex
@@ -896,13 +896,9 @@ Package pdftex.def Info: Ensemblefig1.png  used on input line 152. on input lin
 e 152.
 Package pdftex.def Info: Requested size: 216.80725pt x 126.47096pt on input lin
 e 152.
- [6 <./Ensemblefig1.png>]
-Overfull \hbox (24.15811pt too wide) in paragraph at lines 194--195
-[]\T1/ptm/m/n/12 Click on Ex-port Model, and se-lect Gen-er-ate Code. A func-ti
-on train-Clas-si-fier(trainingData)
- []
+ [6 <./Ensemblefig1.png>] [7]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 204.
 
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 203.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -914,12 +910,17 @@ LaTeX Font Info:    Try loading font information for TS1+pcr on input line 3.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1pcr.fd"
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ))
-Overfull \hbox (12.40121pt too wide) in paragraph at lines 201--205
+Overfull \hbox (12.40121pt too wide) in paragraph at lines 202--206
 [][] 
  []
 
-[7] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
+(Validate2015TyphoonGradeClassifier.m)
+Overfull \hbox (12.40121pt too wide) in paragraph at lines 209--213
+[][] 
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 []\T1/ptm/m/n/12 Dietterich, T. En-sem-ble Meth-ods in Ma-chine Learn-ing. Avai
 l-able at
  []
@@ -930,10 +931,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5858 strings out of 493312
- 78269 string characters out of 3138891
- 222020 words of memory out of 3000000
- 9246 multiletter control sequences out of 15000+200000
+ 5863 strings out of 493312
+ 78506 string characters out of 3138891
+ 270020 words of memory out of 3000000
+ 9248 multiletter control sequences out of 15000+200000
  59906 words of font info for 81 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,13n,64p,694b,1721s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -946,7 +947,7 @@ pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on TyphoonMachineLearningLabDec8.pdf (9 pages, 511725 bytes).
+Output written on TyphoonMachineLearningLabDec8.pdf (9 pages, 513451 bytes).
 PDF statistics:
  82 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

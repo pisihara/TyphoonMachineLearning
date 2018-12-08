@@ -163,50 +163,56 @@
 	\end{enumerate}
 	\newpage
 	\section{Computer Project}
-	{\flushleft Project website: 
-		https://www.overleaf.com/project/5c057323a87843644f4893a6}
-	
-	
+
 	MATLAB has a Statistics and Machine Learning Toolbox which has apps to build both classification and regression models.  The main steps in creating these ML models are:
 	
 	\begin{itemize}
 		\item Train MATLAB's suite of ML models using a specified dataset.
-		\item Choose one of the models with high accuracy, and export a MATLAB function based on your selected trained model.
-		\item Apply the exported model to a validation dataset.
-		If satisfied, continue to the next step. If not, repeat the previous steps.
-		\item Test the model on a new data set and record the error. 
+		\item Choose one of the models with high accuracy, and export a MATLAB function based on your selected model.
+		\item Train the model using a training dataset.
+		\item Apply the trained model to a validation dataset and analyze the output.
+		\item Apply the model on a new data set and analyze the output. 
 	\end{itemize} 
 	
 	\begin{enumerate}
-		\item Using CategoryTrainingData.xlsx,  CategoryData15.xlsx, and CategoryData16.xlsx for your training, validation, and ``new" data sets respectively, use MATLAB to develop a ensemble classification ML model for typhoon grade. Include the confusion matrices in your report. 
+		\item Using CategoryTrainingData.xlsx,  CategoryData15.xlsx, and CategoryData16.xlsx for your training, validation, and ``new" data sets respectively, use MATLAB to develop a ensemble classification ML model for typhoon grade. Include the confusion matrix for the trained model in your report. The steps below guide you through the process:
 		
-		\item Using the RegressionTrainingData.xlsx, RegressionData15.xlsx, and RegressionData16.xlsx for your training, validation and ``new" data sets respectively, use MATLAB to develop  a KNN regression model to predict the time until the maximum wind speed is first attained on the best track. Include a residual error analysis in your report.
+			\begin{description}
+			\item[a)] Select the Classification Learner App, New Session, From File.
+			\item[b)] Open CategoryTraingData.xlsx. After a few seconds you should see the uploaded file in an IMPORT tab.  Click on Import Selection.
+			\item[c)] Choose ``CATEGORY" for response and then click on ``Start Session".
+			\item[d)] In the CLASSIFICATION LEARNER tab, click on All, and then Train.
+			\item[e)] In the History window, you should see a number of ML algorithms: 1.1 Tree (Fine Tree), 1.2 Tree (Medium Tree) etc. ). Select Ensemble, then Bagged Trees.
+			\item[f)]  Click on Confusion Matrix to get information on the trained model's accuracy.
+			\item[g)] Click on Export Model, and select Generate Code.  A function trainClassifier(trainingData) should appear in the MATLAB editor.  Change the function name and data file to TyphoonGradeClassifier.
+			\item[h)] Run the file MakeTyphoonGradeClassifierModel.m
+			\item[i)] In the workspace, you should find TrainedTyphoonGradeClassifier (a struct). Validate the trained classifier using 2015 data   by running the file Validate2015 TyphoonGrade Classifier.m. (Note carefully the changes from the previous script in lines 1,3, 11 and 12.) The variable TyphoonGrade2015Classifier contains the predicted typhoon grade for each of the 25 storms in 2015. Add the 2015 typhoon grade predictions next to the actual typhoon grades  Excel file CategoryData15.xlsx and analyze the accuracy of the predictions.
+			\item[j)] Create a file Run2016TyphoonGradeClassifier.m which is very similar to the file  Validate2015TyphoonGradeClassifier.m (change the xlsread data file information and the name of the output variable in line 13.) Add the 2016 typhoon grade predictions next to the actual typhoon grades  Excel file CategoryData16.xlsx and analyze the accuracy of the predictions.
+			
+		\end{description}
+		
+		\item Using the RegressionTrainingData.xlsx, RegressionData15.xlsx, and RegressionData16.xlsx for your training, validation and ``new" data sets respectively, use MATLAB to develop  a Linear SVM regression model to predict the time until the maximum wind speed is first attained on the best track. Include a residual error analysis in your report.
 	\end{enumerate}
 	
 	
-	\begin{description}
-		\item[i] Select the Classification Learner App, New Session, From File
-		\item[ii.] Open CategoryTraingData.xlsx. After a few seconds you should see the uploaded file in an IMPORT tab.  Click on Import Selection.
-		\item[iii.] Choose ``CATEGORY" for response and then click on ``Start Session".
-		\item[iv] In the CLASSIFICATION LEARNER tab, click on All, and then Train.
-		\item[v.] In the History window, you should see a number of ML algorithms: 1.1 Tree (Fine Tree), 1.2 Tree (Medium Tree) etc. ). Select Ensemble, then Bagged Trees.
-		\item[vi.]  Click on Confusion Matrix to get information on the trained model's accuracy.
-		\item[vii.] Click on Export Model, and select Generate Code.  A function trainClassifier(trainingData) should appear in the MATLAB editor.  Change the function name and data file to TyphoonGradeClassifier.
-		\item[viii.] Run the file MakeTyphoonGradeClassifierModel.m
-		\item[iv.] In the workspace, you should find trainedClassifier (a struct). Inside you should find "HowToPredict", which tells us to use the command   yfit = TyphoonGradeClassifier.predictFcn(T) where T .
-	\end{description}
+
 	
 	
 	\begin{table}[!htpb]
 		\begin{tabular}{|l|}
-			\multicolumn{1}{l}{{EXAMPLE SCRIPT} {\tiny MakeTyphoonGradeClassifierModel.m} }\\\hline
+			\multicolumn{1}{l}{{EXAMPLE SCRIPT1} {\tiny MakeTyphoonGradeClassifierModel.m} }\\\hline
 			\parbox[b]{5.9in}{\lstinputlisting[style=Matlab-editor]{MakeTyphoonGradeClassifierModel.m}}\\\hline
 		\end{tabular}
 	\end{table}
 	
+		\begin{table}[!htpb]
+		\begin{tabular}{|l|}
+			\multicolumn{1}{l}{{EXAMPLE SCRIPT2} {\tiny Validate2015TyphoonGradeClassifier.m} }\\\hline
+			\parbox[b]{5.9in}{\lstinputlisting[style=Matlab-editor]{Validate2015TyphoonGradeClassifier.m}}\\\hline
+		\end{tabular}
+	\end{table}
 	
-	
-	\emph{Project Team:} Michaela Flitsch, Mark Nussbaum, Zach Oslund, Matthew Rueger.
+
 	
 	\newpage
 	\begin{thebibliography}{9}
