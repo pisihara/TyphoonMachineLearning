@@ -1,11 +1,27 @@
 \documentclass{SBCbookchapter}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{tabularx}
 \usepackage[brazil,english]{babel}
 \usepackage{graphicx}
+\usepackage{matlab-prettifier}
+\usepackage[]{mcode}
+
 \title{Typhoon Prediction: A Supervised Machine Learning Approach}
 \begin{document}
 \maketitle
+\lstset
+{ %Formatting for code in appendix
+    language=Matlab,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+
 
 %\addcontentsline{toc}{chapter}{Statistics}
 
@@ -69,7 +85,7 @@ Once a model has been developed using the training data set, it should be valida
 
 \section{Algorithms}
 
-Predicting the JMA grade of an emerging tropical storm based on its initial 18 hour bext track data is an example of a standard supervised learning problem (\cite{Diet}). A training data set has the form $\{({\bf x}_1,y_1),...,({\bf x}_m,y_m)$  where 
+Predicting the JMA grade of an emerging tropical storm based on its initial 18 hour best track data is an example of a standard supervised learning problem (\cite{Diet}). A training data set has the form $\{({\bf x}_1,y_1),...,({\bf x}_m,y_m)$  where 
 \begin{itemize}
 \item ${\bf x_*}$=(YEAR,MONTH,DAY,LAT1,LON1,
 PRES1,WS1,LAT2,LON2,PRES2,WS2,\\LAT3,LON3,PRES3,WS3,LAT4,LON4,PRES4,WS4) specifies the date and first four best track points of an emerging tropical storm (recorded windspeed of 35 knots); and 
@@ -112,7 +128,7 @@ The idea of support vector machines (SVM), a type of ML algorithm mainly applied
 \end{figure}
 
 \subsection{K Nearest Neighbors (KNN)}
-The K Nearest Neighbor algorithm (KNN) assigns a category based on the k closest predictors. In the case of classification, the category with the highest frequency among the K neighbors is selected. In the case of regression, an average of the k closest predictors may be used. Different choices of K may be investigated to give the best separation between categories.
+The K Nearest Neighbor algorithm (KNN) makes a prediction based on the k closest predictors. In the case of classification, the category with the highest frequency among the K neighbors is selected. In the case of regression, an average of the k closest predictors may be used. Different choices of K may be investigated to give the best separation between categories.
 
 
 \begin{figure}[!htpb]
@@ -151,7 +167,7 @@ diverse. (See \cite{Hansen}.
 https://www.overleaf.com/project/5c057323a87843644f4893a6}
 
 
-MATLAB has a Statistics and Machine Learning Toolbox which has apps to build both categorical and regression model.  The main steps in creating these ML models are:
+MATLAB has a Statistics and Machine Learning Toolbox which has apps to build both classification and regression models.  The main steps in creating these ML models are:
 
 \begin{itemize}
 	\item Train MATLAB's suite of ML models using a specified dataset.
@@ -162,9 +178,32 @@ MATLAB has a Statistics and Machine Learning Toolbox which has apps to build bot
 	\end{itemize} 
 
 \begin{enumerate}
- \item Using CategoryTrainingData.xlsx,  CategoryData15.xlsx, and CategoryData16.xlsx for your training, validation, and ``new" data sets respectively, use MATLAB to develop a ensemble categorical ML model for typhoon grade. Include the confusion matrices in your report. 
+ \item Using CategoryTrainingData.xlsx,  CategoryData15.xlsx, and CategoryData16.xlsx for your training, validation, and ``new" data sets respectively, use MATLAB to develop a ensemble classification ML model for typhoon grade. Include the confusion matrices in your report. 
+ 	
  \item Using the RegressionTrainingData.xlsx, RegressionData15.xlsx, and RegressionData16.xlsx for your training, validation and ``new" data sets respectively, use MATLAB to develop  a KNN regression model to predict the time until the maximum wind speed is first attained on the best track. Include a residual error analysis in your report.
 \end{enumerate}
+
+
+\begin{description}
+\item[i] Select the Classification Learner App, New Session, From File
+\item[ii.] Open CategoryTraingData.xlsx. After a few seconds you should see the uploaded file in an IMPORT tab.  Click on Import Selection.
+\item[iii.] Choose ``CATEGORY" for response and then click on ``Start Session".
+\item[iv] In the CLASSIFICATION LEARNER tab, click on All, and then Train.
+\item[v.] In the History window, you should see a number of ML algorithms: 1.1 Tree (Fine Tree), 1.2 Tree (Medium Tree) etc. ). Select Ensemble, then Bagged Trees.
+\item[vi.]  Click on Confusion Matrix to get information on the trained model's accuracy.
+\item[vii.] Click on Export Model, and select Generate Code.  A function trainClassifier(trainingData) should appear in the MATLAB editor.  Change the function name and data file to TyphoonGradeClassifier.
+\item[viii.] Run the file MakeTyphoonGradeClassifierModel.m
+  \end{description}
+
+
+ \begin{table}[!htpb]
+ \begin{tabular}{|l|}
+\multicolumn{1}{l}{{EXAMPLE SCRIPT} {\tiny MakeTyphoonGradeCalssifierModel.m} }\\\hline
+ \parbox[b]{2.75in}{\lstinputlisting[style=Matlab-editor]{MakeTyphoonGradeClassifierModel.m}}\\\hline
+  \end{tabular}
+ \end{table}
+ 
+ 
 
 \emph{Project Team:} Michaela Flitsch, Mark Nussbaum, Zach Oslund, Matthew Rueger.
 
