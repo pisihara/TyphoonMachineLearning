@@ -10,4 +10,4 @@ CATEGORY=X(:,20);
 T=table(YEAR,MONTH,DAY,LAT1,LON1,PRES1,WS1,LAT2,LON2,PRES2,WS2,LAT3,LON3,PRES3,WS3,LAT4,LON4,PRES4,WS4,CATEGORY)
  
 %% Run Exported Function to Create Trained Model
-[trainedClassifier, validationAccuracy]=EnsembleClassifier(T);
+[trainedClassifier, validationAccuracy]=TyphoonGradeClassifier(T);
